@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+use Parser\Console;
+use Parser\Exception;
+
+if (file_exists(__DIR__. DIRECTORY_SEPARATOR .'../vendor/autoload.php')) {
+    require __DIR__. DIRECTORY_SEPARATOR .'../vendor/autoload.php';
+} else {
+    echo "Autoload file not found. Use 'composer dump-autoload'" . PHP_EOL;
+    exit(1);
+}
+if ($argc === 1) {
+    Console::getHelp();
+    exit(1);
+}
+$console = new Console();
+try {
+    $executeState = $console->execute($argv);
+    $executeState === true ? exit(0) : exit(1);
+} catch (Exception $exception) {
+    echo $exception->getMessage() . PHP_EOL;
+    Console::getHelp();
+    exit(1);
+}
