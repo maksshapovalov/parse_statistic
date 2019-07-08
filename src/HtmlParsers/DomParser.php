@@ -22,7 +22,7 @@ class DomParser extends AbstractHtmlParser
         $domElements = $xpath->evaluate("/html/body//" . $tagName);
 
         foreach ($domElements as $domElement) {
-            /** @var $domElement \DOMElement*/
+            /** @var $domElement \DOMElement */
             $elements[] = $domElement->getAttribute($attrName);
         }
         return $elements;

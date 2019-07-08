@@ -5,7 +5,9 @@ namespace Parser;
 
 
 use Parser\Commands\ICommand;
+use Parser\DataProviders\FileSystem;
 use Parser\HtmlParsers\DomParser;
+use Parser\Reports\CSVReport;
 
 class Console
 {
@@ -31,7 +33,12 @@ class Console
                 }
             }
             /** @var $command ICommand */
-            $command = new $className($params, new DomParser());
+            $command = new $className(
+                $params,
+                new DomParser(),
+                new FileSystem(__DIR__ . DIRECTORY_SEPARATOR . '../'),
+                new CSVReport(__DIR__ . DIRECTORY_SEPARATOR . '../')
+            );
             $command->execute();
         } else {
             throw new Exception("Command $commandName not registered", Exception::E_UNKNOWN_OPTION);

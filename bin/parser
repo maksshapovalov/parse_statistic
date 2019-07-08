@@ -4,7 +4,7 @@ use Parser\Console;
 use Parser\Exception;
 
 if (file_exists(__DIR__. DIRECTORY_SEPARATOR .'../vendor/autoload.php')) {
-    require __DIR__. DIRECTORY_SEPARATOR .'../vendor/autoload.php';
+    require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';
 } else {
     echo "Autoload file not found. Use 'composer dump-autoload'" . PHP_EOL;
     exit(1);
