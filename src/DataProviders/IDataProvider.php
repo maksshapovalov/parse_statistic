@@ -24,6 +24,12 @@ interface IDataProvider
 
     /**
      * @param string $domain
+     * @return array
+     */
+    public function getDomainData(string $domain): array;
+
+    /**
+     * @param string $domain
      * @param string $parentUrl
      * @param string $childUrl
      * @return bool

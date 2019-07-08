@@ -32,5 +32,20 @@ class CSVReport implements IReport
 
     public function getDomainReport(array $data): string
     {
+        $fileName = "domain_analyze_" . time() . ".csv";
+        $result = '';
+        if (!$fileHandler = fopen($this->dirPath . $fileName, 'w')) {
+            return $result;
+        }
+        foreach ($data as $parentUrl => $children) {
+            foreach ($children as $childrenUrl => $rows) {
+                foreach ($rows as $row) {
+                    fputcsv($fileHandler, [$parentUrl, $childrenUrl, $row]);
+                }
+            }
+        }
+        $result = "\r\nCSV file saved in resources/$fileName\r\n";
+        fclose($fileHandler);
+        return $result;
     }
 }

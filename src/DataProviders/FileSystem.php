@@ -72,4 +72,19 @@ class FileSystem implements IDataProvider
         }
         return false;
     }
+
+    /**
+     * @param string $domain
+     * @return array
+     */
+    public function getDomainData(string $domain): array
+    {
+        if (file_exists($this->filePath)) {
+            $data = unserialize(file_get_contents($this->filePath));
+            if (array_key_exists($domain, $data)) {
+                return $data[$domain];
+            }
+        }
+        return [];
+    }
 }
